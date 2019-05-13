@@ -6,9 +6,11 @@ namespace ReceiptWebApp.Models
     public class Receipt
     {
         public int Id { get; set; }
+        
+        public ApplicationUser User { get; set; }
 
         [Required]
-        public ApplicationUser User { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public double Amount { get; set; }
@@ -18,10 +20,14 @@ namespace ReceiptWebApp.Models
         [StringLength(255)]
         public string Comments { get; set; }
 
-        [Required]
         public Provider Provider { get; set; }
 
         [Required]
+        public int ProviderId { get; set; }
+
         public CurrencyType CurrencyType { get; set; }
+
+        [Required]
+        public int CurrencyTypeId { get; set; }
     }
 }
