@@ -1,0 +1,30 @@
+﻿@model ReceiptWebApp.ViewModels.ReceiptFormViewModel
+@{
+    ViewBag.Title = "Crear recibo";
+}
+
+<h2>Crear recibo</h2>
+<form>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Provider)
+        @Html.DropDownListFor(m => m.Provider, new SelectList(Model.Providers, "Id", "Name"), "", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Amount)
+        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CurrencyType)
+        @Html.DropDownListFor(m => m.CurrencyType, new SelectList(Model.CurrencyTypes, "Id", "Name"), "", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CreatedDate)
+        @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comments)
+        @Html.TextAreaFor(m => m.Comments, new { @class = "form-control" })
+    </div>
+    <div class="form-group"></div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+</form>
