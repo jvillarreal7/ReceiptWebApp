@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201905132222036_OverrideConventionsReceipt.Designer.cs">
       <DependentUpon>201905132222036_OverrideConventionsReceipt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905132228079_PopulateProvidersAndCurrencyTypes.cs" />
+    <Compile Include="Migrations\201905132228079_PopulateProvidersAndCurrencyTypes.Designer.cs">
+      <DependentUpon>201905132228079_PopulateProvidersAndCurrencyTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905132222036_OverrideConventionsReceipt.resx">
       <DependentUpon>201905132222036_OverrideConventionsReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905132228079_PopulateProvidersAndCurrencyTypes.resx">
+      <DependentUpon>201905132228079_PopulateProvidersAndCurrencyTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
