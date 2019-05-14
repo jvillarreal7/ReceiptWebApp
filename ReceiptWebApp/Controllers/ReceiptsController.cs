@@ -26,7 +26,7 @@ namespace ReceiptWebApp.Controllers
                 CurrencyTypes = _context.CurrencyTypes.ToList()
             };
 
-            TempData["action"] = "Crear";
+            //TempData["action"] = "Crear";
 
             return View(viewModel);
         }
@@ -97,7 +97,7 @@ namespace ReceiptWebApp.Controllers
                 CurrencyType = receipt.CurrencyTypeId
             };
 
-            TempData["action"] = "Editar";
+            //TempData["action"] = "Editar";
 
             return View("Edit", viewModel);
         }

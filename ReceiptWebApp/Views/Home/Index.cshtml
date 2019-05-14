@@ -2,5 +2,100 @@
     ViewBag.Title = "Home";
 }
 
+<div class="jumbotron">
+    <h1>Bienvenido a ReceiptWebApp</h1>
+    <p>En esta aplicación podrás crear recibos, editarlos y darlos de baja de una manera muy sencilla.</p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p>¿Aún no estás registrado con nosotros?</p>
+        <p><a class="btn btn-primary btn-lg" href="/Account/Register" role="button">Registrate</a></p>
+    }
+    else
+    {
+        <p>¡Crea un recibo!</p>
+        <p><a class="btn btn-primary btn-lg" href="/Receipts/Create" role="button">Crear recibo</a></p>
+    }
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h2 class="thumbnail-title">¿Cómo crear recibos?</h2>
+                <hr />
+                <p>Al registrarte y autenticarte se te dará acceso a la sección "crear recibo" de la barra principal.</p>
+                <p>Elementos de un recibo:</p>
+                <ul>
+                    <li>
+                        Proveedor
+                    </li>
+                    <li>
+                        Monto
+                    </li>
+                    <li>
+                        Moneda
+                    </li>
+                    <li>
+                        Fecha
+                    </li>
+                    <li>
+                        Comentarios (opcional)
+                    </li>
+                </ul>
+                <p>Al dar clic en crear aparecerá una tabla con la información del recibo que acabas de crear.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h2 class="thumbnail-title">¿Cómo editar recibos?</h2>
+                <hr />
+                <p>Pasos para editar:</p>
+                <ol>
+                    <li>
+                        Buscar el recibo en la tabla y dar clic en el lápiz de la columna de acciones.
+                    </li>
+                    <li>
+                        Un formulario muy similar al de creación aparecerá, edita los atributos que necesites.
+                    </li>
+                    <li>
+                        Da clic en editar.
+                    </li>
+                    <li>
+                        Aparecerá la tabla de nuevo con la entrada recién editada.
+                    </li>
+                </ol>
+                <p>Puedes editar los recibos cuantas veces necesites.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h2 class="thumbnail-title">¿Cómo eliminar recibos?</h2>
+                <hr />
+                <p>Pasos para eliminar:</p>
+                <ol>
+                    <li>
+                        Buscar el recibo en la tabla y dar clic en el bote de basura de la columna de acciones.
+                    </li>
+                    <li>
+                        Se te preguntará si en verdad deseas eliminar el recibo.
+                    </li>
+                    <li>
+                        Da clic en eliminar.
+                    </li>
+                    <li>
+                        Aparecerá la tabla de nuevo con la entrada recién eliminada.
+                    </li>
+                    <li>
+                        Si eliminaste un recibo por equivocación, contacta a tu administrador para reestablecerla.
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 
 

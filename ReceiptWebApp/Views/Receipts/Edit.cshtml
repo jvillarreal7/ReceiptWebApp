@@ -1,46 +1,46 @@
 ﻿@model ReceiptWebApp.ViewModels.ReceiptFormViewModel
 @{
-    ViewBag.Title = TempData["action"] + " recibo";
+    ViewBag.Title = "Editar recibo";
 }
-<h2>@TempData["action"] recibo</h2>
+<h2>Editar recibo</h2>
 <hr />
 @using (Html.BeginForm("Edit", "Receipts", new { id = "rForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <div class="form-group">
-                @Html.LabelFor(m => m.Provider)
-                @Html.DropDownListFor(m => m.Provider, new SelectList(Model.Providers, "Id", "Name"), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Provider)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Amount)
-                @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Amount)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.CurrencyType)
-                @Html.DropDownListFor(m => m.CurrencyType, new SelectList(Model.CurrencyTypes, "Id", "Name"), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.CurrencyType)
-            </div>
+<div class="row mt-3">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Provider)
+            @Html.DropDownListFor(m => m.Provider, new SelectList(Model.Providers, "Id", "Name"), "Seleccione un proveedor...", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Provider)
         </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                @Html.LabelFor(m => m.CreatedDate)
-                @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control", @id = "fecha" })
-                @Html.ValidationMessageFor(m => m.CreatedDate)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Comments)
-                @Html.TextAreaFor(m => m.Comments, new { @class = "form-control" })
-            </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Amount)
+            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", placeholder = "p. ej. 1500.75", id = "monto" })
+            @Html.ValidationMessageFor(m => m.Amount)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CurrencyType)
+            @Html.DropDownListFor(m => m.CurrencyType, new SelectList(Model.CurrencyTypes, "Id", "Name"), "Seleccione el tipo de cambio...", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CurrencyType)
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">@TempData["action"]</button>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.CreatedDate)
+            @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control", @id = "fecha", placeholder = "dd/mm/yyyy hh:mm" })
+            @Html.ValidationMessageFor(m => m.CreatedDate)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Comments)
+            @Html.TextAreaFor(m => m.Comments, new { @class = "form-control", rows = 5 })
+        </div>
+    </div>
+</div>
+
+    <button type="submit" class="btn btn-primary">Editar</button>
 }
 
 @section scripts {

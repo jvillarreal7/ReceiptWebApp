@@ -1,8 +1,8 @@
 ﻿@model ReceiptWebApp.ViewModels.ReceiptFormViewModel
 @{
-    ViewBag.Title = TempData["action"] + " recibo";
+    ViewBag.Title = "Crear recibo";
 }
-<h2>@TempData["action"] recibo</h2>
+<h2>Crear recibo</h2>
 <hr />
 @using (Html.BeginForm("Create", "Receipts", new { id = "rForm" }))
 {
@@ -12,17 +12,17 @@
         <div class="col-md-6">
             <div class="form-group">
                 @Html.LabelFor(m => m.Provider)
-                @Html.DropDownListFor(m => m.Provider, new SelectList(Model.Providers, "Id", "Name"), "", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Provider, new SelectList(Model.Providers, "Id", "Name"), "Seleccione un proveedor...", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Provider)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Amount)
-                @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", placeholder = "p. ej. 1500.75", id = "monto" })
                 @Html.ValidationMessageFor(m => m.Amount)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.CurrencyType)
-                @Html.DropDownListFor(m => m.CurrencyType, new SelectList(Model.CurrencyTypes, "Id", "Name"), "", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.CurrencyType, new SelectList(Model.CurrencyTypes, "Id", "Name"), "Seleccione el tipo de cambio...", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.CurrencyType)
             </div>
         </div>
@@ -30,22 +30,26 @@
         <div class="col-md-6">
             <div class="form-group">
                 @Html.LabelFor(m => m.CreatedDate)
-                @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control", @id = "fecha" })
+                @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control", @id = "fecha", placeholder = "dd/mm/yyyy hh:mm" })
                 @Html.ValidationMessageFor(m => m.CreatedDate)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Comments)
-                @Html.TextAreaFor(m => m.Comments, new { @class = "form-control" })
+                @Html.TextAreaFor(m => m.Comments, new { @class = "form-control", rows = 5 })
             </div>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">@TempData["action"]</button>
+    <button type="submit" class="btn btn-primary">Crear</button>
 }
 
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        window.onload = function () {
+            document.getElementById("monto").value = "";
+        }
+
         $("#fecha").datetimepicker({
             locale: 'es-MX',
             format: "DD/MM/YYYY hh:mm A"

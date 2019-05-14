@@ -80,3 +80,25 @@ body {
 .swal2-popup {
     font-size: 1.6rem !important;
 }
+
+.site-footer {
+    font-size: small;
+}
+
+.jumbotron {
+    background-image: url("/Content/img/access-office-resources.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+    .jumbotron h1, .jumbotron .h1 {
+        color: white;
+    }
+
+    .jumbotron p, .jumbotron .p {
+        color: white;
+    }
+
+.thumbnail-title {
+    font-weight: bold;
+}
