@@ -72,9 +72,43 @@
             "scrollCollapse": true,
             "pageLength": 25
         });
+
+        //To-do? DT usando API.
+
+        //$('#list').DataTable({
+        //    ajax: {
+        //        "url": "/api/receipts/getall",
+        //        "type": "GET",
+        //        "error": function (e) {
+        //        },
+        //        "dataSrc": function (d) {
+        //            return d
+        //        }
+        //    },
+        //    columns: [
+        //        { data: 'CreatedDate' },
+        //        { data: 'Provider.Name' },
+        //        { data: 'Amount' },
+        //        { data: 'CurrencyType.Name' },
+        //        { data: 'Comments' },
+        //        {
+        //            "render": function (data, type, full, meta) {
+        //                var actions = '<a href="/Receipts/Edit/' + full.Id + '" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a> |';
+        //                actions += '<a href="#" class="deactivate-receipt glyphicon glyphicon-trash" data-receipt-id="' + full.Id + '" title="Eliminar"></a>';
+
+        //                return actions;
+        //            }
+        //        }
+        //    ]
+        //});
+
     </script>
 
     <script>
+        function refreshWindow() {
+            location.reload();
+        }
+
         $(".deactivate-receipt").click(function (e) {
             Swal.fire({
                 title: 'Eliminar recibo',
@@ -92,21 +126,25 @@
                         url: "/api/receipts/" + id,
                         method: "DELETE"
                     })
-                        .done(function () {
-                            Swal.fire(
-                                'Recibo eliminado',
-                                'El recibo ha sido eliminado satisfactoriamente.',
-                                'success'
-                            )
-
+                    .done(function () {
+                        Swal.fire({
+                            title: 'Recibo eliminado',
+                            text: 'El recibo ha sido eliminado satisfactoriamente.',
+                            type: 'success',
+                            onClose: () => {
+                                refreshWindow();
+                            }
                         })
-                        .fail(function () {
-                            Swal.fire(
-                                'Error',
-                                'Ocurrió un problema al intentar eliminar el recibo.',
-                                'error'
-                            )
-                        });
+
+                    })
+                    .fail(function () {
+                        Swal.fire(
+                            'Error',
+                            'Ocurrió un problema al intentar eliminar el recibo.',
+                            'error'
+                        )
+                    });
+                    
                 }
             })
         });
