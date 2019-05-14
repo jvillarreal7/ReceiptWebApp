@@ -48,6 +48,8 @@
                 <td>
                     <a href="@Url.Action("Edit", "Receipts", new { id = receipt.Id })" title="Editar">
                         <i class="glyphicon glyphicon-pencil"></i>
+                    </a> |
+                    <a href="#" class="deactivate-receipt glyphicon glyphicon-trash" data-receipt-id="@receipt.Id" title="Eliminar">
                     </a>
                 </td>
 
@@ -58,6 +60,7 @@
 </table>
 
 @section scripts {
+
     <script>
         $('#list').DataTable({
             "language": {
@@ -71,21 +74,47 @@
         });
     </script>
 
+    <script>
+        $(".deactivate-receipt").click(function (e) {
+            Swal.fire({
+                title: 'Eliminar recibo',
+                text: "¿Está seguro de eliminar el recibo?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    var id = $(e.target).attr("data-receipt-id");
+                    $.ajax({
+                        url: "/api/receipts/" + id,
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            Swal.fire(
+                                'Recibo eliminado',
+                                'El recibo ha sido eliminado satisfactoriamente.',
+                                'success'
+                            )
+
+                        })
+                        .fail(function () {
+                            Swal.fire(
+                                'Error',
+                                'Ocurrió un problema al intentar eliminar el recibo.',
+                                'error'
+                            )
+                        });
+                }
+            })
+        });
+    </script>
+
     @if (ViewBag.Response != null)
     {
         <script>
-            @*swal({
-                title: "@Html.Raw(ViewBag.Response.Title)",
-                text: "@Html.Raw(ViewBag.Response.Message)",
-                icon: "@ViewBag.Response.AlertType",
-                button: {
-                    text: "OK",
-                    value: true,
-                    visible: true,
-                    className: "btn btn-primary",
-                    closeModal: true,
-                }
-            });*@
             Swal.fire({
                 type: "@ViewBag.Response.AlertType",
                 title: "@Html.Raw(ViewBag.Response.Title)",

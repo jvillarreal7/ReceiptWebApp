@@ -29,5 +29,7 @@ namespace ReceiptWebApp.Models
 
         [Required]
         public int CurrencyTypeId { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

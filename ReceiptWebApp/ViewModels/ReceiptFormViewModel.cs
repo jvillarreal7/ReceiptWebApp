@@ -21,6 +21,8 @@ namespace ReceiptWebApp.ViewModels
         [Required(ErrorMessage = "La fecha es requerida.")]
         public string CreatedDate { get; set; }
 
+        public bool IsActive { get; set; }
+
         [DisplayName("Proveedor")]
         [Required(ErrorMessage = "El proveedor es requerido.")]
         public int Provider { get; set; }

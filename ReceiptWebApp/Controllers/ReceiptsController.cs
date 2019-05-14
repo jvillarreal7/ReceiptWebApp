@@ -49,7 +49,8 @@ namespace ReceiptWebApp.Controllers
                 Amount = viewModel.Amount,
                 Comments = viewModel.Comments,
                 ProviderId = viewModel.Provider,
-                CurrencyTypeId = viewModel.CurrencyType
+                CurrencyTypeId = viewModel.CurrencyType,
+                IsActive = true
             };
 
             _context.Receipts.Add(receipt);
@@ -72,7 +73,7 @@ namespace ReceiptWebApp.Controllers
             var receipts = _context.Receipts
                 .Include(x => x.Provider)
                 .Include(x => x.CurrencyType)
-                .Where(g => g.UserId == userId);
+                .Where(g => g.UserId == userId && g.IsActive == true);
 
             ViewBag.Response = TempData["alert"];
 
