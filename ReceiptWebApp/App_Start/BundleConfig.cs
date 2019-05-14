@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace ReceiptWebApp
 {
@@ -9,7 +8,11 @@ namespace ReceiptWebApp
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-3.3.1.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/misc_plugins").Include(
+                        "~/Scripts/moment-with-locales.js",
+                        "~/Scripts/bootstrap-datetimepicker.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -24,6 +27,7 @@ namespace ReceiptWebApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datetimepicker.css",
                       "~/Content/site.css"));
         }
     }

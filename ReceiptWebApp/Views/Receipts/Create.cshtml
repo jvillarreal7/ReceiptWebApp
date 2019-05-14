@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Crear recibo";
 }
-
 <h2>Crear recibo</h2>
+<hr />
 @using (Html.BeginForm("Create", "Receipts"))
 {
     @Html.AntiForgeryToken()
@@ -29,7 +29,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 @Html.LabelFor(m => m.CreatedDate)
-                @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control", @id = "fecha" })
                 @Html.ValidationMessageFor(m => m.CreatedDate)
             </div>
             <div class="form-group">
@@ -41,6 +41,15 @@
 
     <button type="submit" class="btn btn-primary">Crear</button>
 }
+
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+
+        $("#fecha").datetimepicker({
+            locale: 'es-MX'
+        });
+    </script>
 }
+

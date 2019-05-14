@@ -5,7 +5,7 @@ namespace ReceiptWebApp.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "La dirección de email es requerida.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -41,14 +41,14 @@ namespace ReceiptWebApp.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "La dirección de email es requerida.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "La dirección de email es requerida.")]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
@@ -64,7 +64,7 @@ namespace ReceiptWebApp.Models
 
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "La dirección de email no es válida.")]
+        [Required(ErrorMessage = "La dirección de email es requerida.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -83,7 +83,7 @@ namespace ReceiptWebApp.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "La dirección de email es requerida.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -104,7 +104,7 @@ namespace ReceiptWebApp.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "La dirección de email es requerida.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

@@ -9,6 +9,7 @@ namespace ReceiptWebApp.ViewModels
     {
         [DisplayName("Monto")]
         [Required(ErrorMessage = "El monto es requerido.")]
+        [Range(1, double.MaxValue, ErrorMessage = "El monto debe ser una cantidad mayor a 0.")]
         public double Amount { get; set; }
 
         [DisplayName("Comentarios")]
