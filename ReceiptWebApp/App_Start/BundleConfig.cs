@@ -11,6 +11,8 @@ namespace ReceiptWebApp
                         "~/Scripts/jquery-3.3.1.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/misc_plugins").Include(
+                        "~/Scripts/jquery.dataTables.min.js",
+                        "~/Scripts/dataTables.bootstrap.min.js",
                         "~/Scripts/moment-with-locales.js",
                         "~/Scripts/bootstrap-datetimepicker.min.js"));
 
@@ -27,6 +29,7 @@ namespace ReceiptWebApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/datatables.min.css",
                       "~/Content/bootstrap-datetimepicker.css",
                       "~/Content/site.css"));
         }

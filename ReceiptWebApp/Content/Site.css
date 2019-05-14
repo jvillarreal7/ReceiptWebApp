@@ -44,6 +44,10 @@ span.field-validation-error {
     font-weight: bold;
 }
 
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+        background-color: midnightblue;
+    }
+
 body {
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 17px;

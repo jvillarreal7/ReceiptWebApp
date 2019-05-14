@@ -2,6 +2,7 @@
 using ReceiptWebApp.Models;
 using ReceiptWebApp.ViewModels;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -53,6 +54,17 @@ namespace ReceiptWebApp.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult List()
+        {
+            var userId = User.Identity.GetUserId();
+            var receipts = _context.Receipts
+                .Include(x => x.Provider)
+                .Include(x => x.CurrencyType)
+                .Where(g => g.UserId == userId);
+
+            return View(receipts);
         }
     }
 }

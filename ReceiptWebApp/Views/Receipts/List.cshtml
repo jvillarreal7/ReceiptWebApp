@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ReceiptWebApp.Models.Receipt>
+@{
+    ViewBag.Title = "Listado de recibos";
+}
+
+<h2>Listado de recibos</h2>
+<hr />
+<table id="list" class="table table-striped" style="width: 100%">
+    <thead>
+        <tr>
+            <th>@Html.Label("Fecha")</th>
+            <th>@Html.Label("Proveedor")</th>
+            <th>@Html.Label("Monto")</th>
+            <th>@Html.Label("Tipo de cambio")</th>
+            <th>@Html.Label("Comentarios")</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var receipt in Model)
+        {
+        <tr>
+            <td>
+                @receipt.CreatedDate.ToString("dd/MM/yyyy - hh:mm tt")
+            </td>
+            
+            <td>
+                @receipt.Provider.Name
+            </td>
+
+            <td>
+                $@receipt.Amount
+            </td>
+
+            <td>
+                @receipt.CurrencyType.Name
+            </td>
+
+
+            @if (String.IsNullOrEmpty(receipt.Comments))
+            {
+                <td>-</td>
+            }
+            else
+            {
+                <td>@receipt.Comments</td>
+            }
+            <td></td>
+
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+@section scripts {
+    <script>
+        $('#list').DataTable({
+            "language": {
+                url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            destroy: true,
+            "scrollY": "230px",
+            "scrollX": true,
+            "scrollCollapse": true,
+            "pageLength": 25
+        });
+    </script>   
+}
+
