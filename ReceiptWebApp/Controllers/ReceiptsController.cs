@@ -29,6 +29,7 @@ namespace ReceiptWebApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ReceiptFormViewModel viewModel)
         {
             if(!ModelState.IsValid)
