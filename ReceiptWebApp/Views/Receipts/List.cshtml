@@ -19,35 +19,35 @@
     <tbody>
         @foreach (var receipt in Model)
         {
-        <tr>
-            <td>
-                @receipt.CreatedDate.ToString("dd/MM/yyyy - hh:mm tt")
-            </td>
-            
-            <td>
-                @receipt.Provider.Name
-            </td>
+            <tr>
+                <td>
+                    @receipt.CreatedDate.ToString("dd/MM/yyyy - hh:mm tt")
+                </td>
 
-            <td>
-                $@receipt.Amount
-            </td>
+                <td>
+                    @receipt.Provider.Name
+                </td>
 
-            <td>
-                @receipt.CurrencyType.Name
-            </td>
+                <td>
+                    $@receipt.Amount
+                </td>
+
+                <td>
+                    @receipt.CurrencyType.Name
+                </td>
 
 
-            @if (String.IsNullOrEmpty(receipt.Comments))
-            {
-                <td>-</td>
-            }
-            else
-            {
-                <td>@receipt.Comments</td>
-            }
-            <td></td>
+                @if (String.IsNullOrEmpty(receipt.Comments))
+                {
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>@receipt.Comments</td>
+                }
+                <td></td>
 
-        </tr>
+            </tr>
         }
     </tbody>
 
@@ -65,6 +65,29 @@
             "scrollCollapse": true,
             "pageLength": 25
         });
-    </script>   
+    </script>
+
+    @if (ViewBag.Response != null)
+    {
+        <script>
+            @*swal({
+                title: "@Html.Raw(ViewBag.Response.Title)",
+                text: "@Html.Raw(ViewBag.Response.Message)",
+                icon: "@ViewBag.Response.AlertType",
+                button: {
+                    text: "OK",
+                    value: true,
+                    visible: true,
+                    className: "btn btn-primary",
+                    closeModal: true,
+                }
+            });*@
+            Swal.fire({
+                type: "@ViewBag.Response.AlertType",
+                title: "@Html.Raw(ViewBag.Response.Title)",
+                text: "@Html.Raw(ViewBag.Response.Message)"
+            })
+        </script>
+    }
 }
 

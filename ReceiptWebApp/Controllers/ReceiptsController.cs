@@ -50,12 +50,19 @@ namespace ReceiptWebApp.Controllers
                 CurrencyTypeId = viewModel.CurrencyType
             };
 
+            TempData["alert"] = new GenericResponse()
+            {
+                AlertType = "success",
+                Message = "Recibo creado con éxito.",
+                Title = "Éxito"
+            };
             _context.Receipts.Add(receipt);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "Receipts");
         }
 
+        [OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
         public ActionResult List()
         {
             var userId = User.Identity.GetUserId();
@@ -63,6 +70,8 @@ namespace ReceiptWebApp.Controllers
                 .Include(x => x.Provider)
                 .Include(x => x.CurrencyType)
                 .Where(g => g.UserId == userId);
+
+            ViewBag.Response = TempData["alert"];
 
             return View(receipts);
         }

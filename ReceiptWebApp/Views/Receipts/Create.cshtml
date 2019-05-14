@@ -4,7 +4,7 @@
 }
 <h2>Crear recibo</h2>
 <hr />
-@using (Html.BeginForm("Create", "Receipts"))
+@using (Html.BeginForm("Create", "Receipts", new { id = "rForm" }))
 {
     @Html.AntiForgeryToken()
     <div class="row mt-3">

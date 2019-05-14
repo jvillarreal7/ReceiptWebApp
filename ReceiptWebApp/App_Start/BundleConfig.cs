@@ -13,6 +13,7 @@ namespace ReceiptWebApp
             bundles.Add(new ScriptBundle("~/bundles/misc_plugins").Include(
                         "~/Scripts/jquery.dataTables.min.js",
                         "~/Scripts/dataTables.bootstrap.min.js",
+                        "~/Scripts/sweetalert2.min.js",
                         "~/Scripts/moment-with-locales.js",
                         "~/Scripts/bootstrap-datetimepicker.min.js"));
 
