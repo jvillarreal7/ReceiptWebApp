@@ -9,18 +9,22 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Provider)
         @Html.DropDownListFor(m => m.Provider, new SelectList(Model.Providers, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Provider)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Amount)
         @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Amount)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.CurrencyType)
         @Html.DropDownListFor(m => m.CurrencyType, new SelectList(Model.CurrencyTypes, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CurrencyType)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.CreatedDate)
         @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CreatedDate)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Comments)
@@ -28,4 +32,7 @@
     </div>
     <div class="form-group"></div>
     <button type="submit" class="btn btn-primary">Crear</button>
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

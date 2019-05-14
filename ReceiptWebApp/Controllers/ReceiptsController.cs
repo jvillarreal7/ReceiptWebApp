@@ -31,6 +31,13 @@ namespace ReceiptWebApp.Controllers
         [HttpPost]
         public ActionResult Create(ReceiptFormViewModel viewModel)
         {
+            if(!ModelState.IsValid)
+            {
+                viewModel.Providers = _context.Providers.ToList();
+                viewModel.CurrencyTypes = _context.CurrencyTypes.ToList();
+                return View("Create", viewModel);
+            }
+
             var receipt = new Receipt
             {
                 UserId = User.Identity.GetUserId(),
