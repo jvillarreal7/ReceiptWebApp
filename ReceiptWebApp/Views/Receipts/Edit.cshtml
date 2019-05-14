@@ -4,9 +4,10 @@
 }
 <h2>@TempData["action"] recibo</h2>
 <hr />
-@using (Html.BeginForm("Create", "Receipts", new { id = "rForm" }))
+@using (Html.BeginForm("Edit", "Receipts", new { id = "rForm" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="form-group">

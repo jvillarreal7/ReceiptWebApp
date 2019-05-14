@@ -7,6 +7,8 @@ namespace ReceiptWebApp.ViewModels
 {
     public class ReceiptFormViewModel
     {
+        public int Id { get; set; }
+
         [DisplayName("Monto")]
         [Required(ErrorMessage = "El monto es requerido.")]
         [Range(1, double.MaxValue, ErrorMessage = "El monto debe ser una cantidad mayor a 0.")]

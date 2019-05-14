@@ -45,7 +45,11 @@
                 {
                     <td>@receipt.Comments</td>
                 }
-                <td></td>
+                <td>
+                    <a href="@Url.Action("Edit", "Receipts", new { id = receipt.Id })" title="Editar">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                </td>
 
             </tr>
         }

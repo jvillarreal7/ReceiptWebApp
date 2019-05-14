@@ -26,6 +26,8 @@ namespace ReceiptWebApp.Controllers
                 CurrencyTypes = _context.CurrencyTypes.ToList()
             };
 
+            TempData["action"] = "Crear";
+
             return View(viewModel);
         }
 
@@ -50,14 +52,15 @@ namespace ReceiptWebApp.Controllers
                 CurrencyTypeId = viewModel.CurrencyType
             };
 
+            _context.Receipts.Add(receipt);
+            _context.SaveChanges();
+
             TempData["alert"] = new GenericResponse()
             {
                 AlertType = "success",
                 Message = "Recibo creado con éxito.",
                 Title = "Éxito"
             };
-            _context.Receipts.Add(receipt);
-            _context.SaveChanges();
 
             return RedirectToAction("List", "Receipts");
         }
@@ -74,6 +77,59 @@ namespace ReceiptWebApp.Controllers
             ViewBag.Response = TempData["alert"];
 
             return View(receipts);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var receipt = _context.Receipts.Single(g => g.Id == id && g.UserId == userId);
+
+            var viewModel = new ReceiptFormViewModel
+            {
+                Id = receipt.Id,
+                Providers = _context.Providers.ToList(),
+                CurrencyTypes = _context.CurrencyTypes.ToList(),
+                Amount = receipt.Amount,
+                Comments = receipt.Comments,
+                CreatedDate = receipt.CreatedDate.ToString("dd/MM/yyyy hh:mm tt"),
+                Provider = receipt.ProviderId,
+                CurrencyType = receipt.CurrencyTypeId
+            };
+
+            TempData["action"] = "Editar";
+
+            return View("Edit", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ReceiptFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Providers = _context.Providers.ToList();
+                viewModel.CurrencyTypes = _context.CurrencyTypes.ToList();
+                return View("Edit", viewModel);
+            }
+
+            var userId = User.Identity.GetUserId();
+            var receipt = _context.Receipts.Single(g => g.Id == viewModel.Id && g.UserId == userId);
+            receipt.Amount = viewModel.Amount;
+            receipt.CreatedDate = DateTime.Parse(viewModel.CreatedDate);
+            receipt.Comments = viewModel.Comments;
+            receipt.ProviderId = viewModel.Provider;
+            receipt.CurrencyTypeId = viewModel.CurrencyType;
+
+            _context.SaveChanges();
+
+            TempData["alert"] = new GenericResponse()
+            {
+                AlertType = "success",
+                Message = "Recibo editado con éxito.",
+                Title = "Éxito"
+            };
+
+            return RedirectToAction("List", "Receipts");
         }
     }
 }
