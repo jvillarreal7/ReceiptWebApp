@@ -59,7 +59,7 @@ namespace ReceiptWebApp.Controllers
             TempData["alert"] = new GenericResponse()
             {
                 AlertType = "success",
-                Message = "Recibo creado con éxito.",
+                Message = "Recibo creado con éxito. Id: " + receipt.Id.ToString(),
                 Title = "Éxito"
             };
 
